@@ -106,7 +106,7 @@ values in your data structures Explored and Frontier as well as the search tree.
     $[O_{18}, I_{17}, P_{18}, G_{14}, M_{15}, H_{10}, J_{11}, L_{12}, E_{8}, E_{6}, C_{3}, D_{4}]$ & $[A_{1}, B_{2}, C_{5}, D_{7}, F_{9}, E_{13}, G_{16}]$ \\ \hline
         
     \end{tabular}
-
+\end{center}  
 \newpage
 \subsection{Answer - Tree}    
 \begin{tikzpicture}[sibling distance=7em, every node/.style = {shape=rectangle, rounded corners, draw, align=center, top color = white, bottom color = black!20}]]
@@ -134,6 +134,65 @@ values in your data structures Explored and Frontier as well as the search tree.
 \subsection{Answer - Sequence}
 The following sequence is the solution to reach the goal state, $\{O\}$.
 $$[A_{1}, B_{2}, C_{5}, D_{7}, F_{9}, E_{13}, G_{16}, O_{19}]$$
+
+\newpage
+\section{Question Two}
+\subsection{Brief}
+\flushleft\textit{Perform Uniform Cost Search to find a path from A to O. Again assume that nodes are expanded in alphabetic order. Write down carefully the values in your data structures Explored and Frontier as well as the search tree [30$\%$ - 30 marks]}
+
+\subsection{Answer -Data Structures}
+\begin{center}
+    \begin{tabular}{ l | c}
     
-\end{center}
+    \hline
+    \textbf{Frontier} & \textbf{Explored}\\
+    
+    \hline
+    [A:0] &  [ ] \\ \hline 
+    [B:2, C:4, D:6] & [A:0] \\ \hline
+    [C:4, D:6, E:9] & [A:0, B:2] \\ \hline
+    [D:5, E:6] & [A:0, B:2, C:4] \\ \hline
+    [E:6, J:6, F:8, H:9] & [A:0, B:2, C:4, D:5] \\ \hline
+    [J:6, F:7, P:7, H:9, I:9, G:11] & [A:0 B:2, C:4, D:5, E:6] \\ \hline
+    [F:7, P:7, H:9, I:9, G:11] & [A:0, B;2, C:4, D:5, E:6, J:6] \\ \hline
+    [P:7, H:9, I:9, L:9, G:10, M:12] & [A:0, B;2, C:4, D:5, E:6, J:6, F:7] \\ \hline
+    [I:8, H:9, L:9, G:10, M:12] & [A:0, B;2, C:4, D:5, E:6, J:6, F:7, P:7] \\ \hline
+    [H:9, L:9, G:10, Q:10, O:11, M:12] & [A:0, B;2, C:4, D:5, E:6, J:6, F:7, P:7, I:8] \\ \hline
+    [L:9, G:10, K:10, Q:10, O:11, M:12] & [A:0, B;2, C:4, D:5, E:6, J:6, F:7, P:7, I:8, H:9] \\ \hline
+    [G:10, K:10, Q:10, O:11, M:12] & [A:0, B;2, C:4, D:5, E:6, J:6, F:7, P:7, I:8, H:9, L:9] \\ \hline
+    [K:10, Q:10, O:11, M:12] & [A:0, B;2, C:4, D:5, E:6, J:6, F:7, P:7, I:8, H:9, L:9, G:10] \\ \hline
+    [Q:10, O:11, M:12] & [A:0, B;2, C:4, D:5, E:6, J:6, F:7, P:7, I:8, H:9, L:9, G:10, K:10] \\ \hline
+    [O:11, M:12] & [A:0, B;2, C:4, D:5, E:6, J:6, F:7, P:7, I:8, H:9, L:9, G:10, K:10, Q:10] \\ \hline
+    [M:12] & [A:0, B;2, C:4, D:5, E:6, J:6, F:7, P:7, I:8, H:9, L:9, G:10, K:10, Q:10, O:11] \\ \hline
+        
+    \end{tabular}
+\end{center}  
+
+\subsection{Answer - Tree}
+\begin{tikzpicture}[sibling distance=7em, every node/.style = {shape=rectangle, rounded corners, draw, align=center, top color = white, bottom color = black!20}]]
+    \node{A:0}[sibling distance=15em]
+        child{ node{B:2}
+            child{ node{E:9}}}
+        child{ node{C:4}[sibling distance = 12em]
+            child{ node{D:5}[sibling distance=3em]
+                child{ node{J:6}}
+                child{ node{F:8}}
+                child{ node{H:9}
+                    child{ node{K:10}}}}
+            child{ node{E:6}[sibling distance=3em]
+                child{ node{G:11}}
+                child{ node{P:7}
+                    child{ node{I:8}
+                        child{ node{O:11}}
+                        child{ node{Q:10}}}}
+               child{ node{I:9}}
+               child{ node{F:7}
+                   child{ node{G:10}}
+                   child{ node{L:9}}
+                   child{ node{M:12}}}}}
+       child{ node{D:6}};
+    \end{tikzpicture} \\
+\subsection{Answer - Solution}
+The following sequence is the solution to reach the goal state, $\{O\}$.
+$$ACEPIO\ (Total\ Cost\ =\ 11)$$
 \end{document}
