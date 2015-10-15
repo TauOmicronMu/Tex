@@ -103,9 +103,9 @@ values in your data structures Explored and Frontier as well as the search tree.
     $[C_{5}, E_{6}, C_{3}, D_{4}]$ & $[A_{1}, B_{2}]$ \\ \hline    
     $[D_{7}, E_{8}, E_{6}, C_{3}, D_{4}]$ & $[A_{1}, B_{2}, C_{5}]$ \\ \hline
     $[F_{9}, H_{10}, J_{11}, L_{12}, E_{8}, E_{6}, C_{3}, D_{4}]$ & $[A_{1}, B_{2}, C_{5}, D_{7}]$ \\ \hline
-    $[E_{13}, G_{14}, M_{15}, H_{10}, J_{11}, L_{12}, E_{8}, E_{6}, C_{3}, D_{4}]$ & $[A_{1}, B_{2}, C_{5}, D_{7}, F_{9}]$ \\ \hline
-    $[G_{16}, I_{17}, P_{18}, G_{14}, M_{15}, H_{10}, J_{11}, L_{12}, E_{8}, E_{6}, C_{3}, D_{4}]$ & $[A_{1}, B_{2}, C_{5}, D_{7}, F_{9}, E_{13}]$ \\ \hline
-    $[O_{18}, I_{17}, P_{18}, G_{14}, M_{15}, H_{10}, J_{11}, L_{12}, E_{8}, E_{6}, C_{3}, D_{4}]$ & $[A_{1}, B_{2}, C_{5}, D_{7}, F_{9}, E_{13}, G_{16}]$ \\ \hline
+    $[E_{13}, G_{14}, L_{15}, M_{16}, H_{10}, J_{11}, L_{12}, E_{8}, E_{6}, C_{3}, D_{4}]$ & $[A_{1}, B_{2}, C_{5}, D_{7}, F_{9}]$ \\ \hline
+    $[G_{17}, I_{18}, P_{19}, G_{14}, L_{15}, M_{16}, H_{10}, J_{11}, L_{12}, E_{8}, E_{6}, C_{3}, D_{4}]$ & $[A_{1}, B_{2}, C_{5}, D_{7}, F_{9}, E_{13}]$ \\ \hline
+    $[O_{20}, I_{18}, P_{19}, G_{14}, L_{15}, M_{16}, H_{10}, J_{11}, L_{12}, E_{8}, E_{6}, C_{3}, D_{4}]$ & $[A_{1}, B_{2}, C_{5}, D_{7}, F_{9}, E_{13}, G_{17}]$ \\ \hline
         
     \end{tabular}
 \end{center}  
@@ -118,12 +118,13 @@ values in your data structures Explored and Frontier as well as the search tree.
                 child{ node{$D_{7}$}
                     child{ node{$F_{9}$}
                         child{ node{$E_{13}$}
-                            child{ node{$G_{16}$}
-                                child{ node{$O_{19}$}}}
-                            child{ node{$I_{17}$}}
-                            child{ node{$P_{18}$}}}                            
+                            child{ node{$G_{17}$}
+                                child{ node{$O_{20}$}}}
+                            child{ node{$I_{18}$}}
+                            child{ node{$P_{19}$}}}                            
                         child{ node{$G_{14}$}}
-                        child{ node{$M_{15}$}}}
+                        child{ node{$L_{15}$}}
+                        child{ node{$M_{16}$}}}
                     child{ node{$H_{10}$}}
                     child{ node{$J_{11}$}}
                     child{ node{$L_{12}$}}}
@@ -154,9 +155,9 @@ $$[A_{1}, B_{2}, C_{5}, D_{7}, F_{9}, E_{13}, G_{16}, O_{19}]$$
     [B:2, C:4, D:6] & [A:0] \\ \hline
     [C:4, D:6, E:9] & [A:0, B:2] \\ \hline
     [D:5, E:6] & [A:0, B:2, C:4] \\ \hline
-    [E:6, J:6, F:8, H:9] & [A:0, B:2, C:4, D:5] \\ \hline
-    [J:6, F:7, P:7, H:9, I:9, G:11] & [A:0 B:2, C:4, D:5, E:6] \\ \hline
-    [F:7, P:7, H:9, I:9, G:11] & [A:0, B;2, C:4, D:5, E:6, J:6] \\ \hline
+    [E:6, J:6, F:8, H:9, L:10] & [A:0, B:2, C:4, D:5] \\ \hline
+    [J:6, F:7, P:7, H:9, I:9, L:10, G:11] & [A:0 B:2, C:4, D:5, E:6] \\ \hline
+    [F:7, P:7, H:9, I:9, L:10, G:11] & [A:0, B;2, C:4, D:5, E:6, J:6] \\ \hline
     [P:7, H:9, I:9, L:9, G:10, M:12] & [A:0, B;2, C:4, D:5, E:6, J:6, F:7] \\ \hline
     [I:8, H:9, L:9, G:10, M:12] & [A:0, B;2, C:4, D:5, E:6, J:6, F:7, P:7] \\ \hline
     [H:9, L:9, G:10, Q:10, O:11, M:12] & [A:0, B;2, C:4, D:5, E:6, J:6, F:7, P:7, I:8] \\ \hline
@@ -180,7 +181,8 @@ $$[A_{1}, B_{2}, C_{5}, D_{7}, F_{9}, E_{13}, G_{16}, O_{19}]$$
                 child{ node{J:6}}
                 child{ node{F:8}}
                 child{ node{H:9}
-                    child{ node{K:10}}}}
+                    child{ node{K:10}}}
+                child{ node{L:10}}}
             child{ node{E:6}[sibling distance=3em]
                 child{ node{G:11}}
                 child{ node{P:7}
