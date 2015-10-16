@@ -223,7 +223,7 @@ Throughout this search, the algorithm checks for a 'meeting point' on generation
     \hline
     [A] &  [ ] \\ \hline 
     [B, C, D] & [A] \\ \hline
-    [C, D, E] & [A, B] \\ \hline
+    [E, C, D] & [A, B] \\ \hline
         
     \end{tabular}
     \\~\\
@@ -289,7 +289,7 @@ $explored\Omega \leftarrow stack$
 \-\hspace{10mm} \textit{//Checks whether a solution has been found} \\
 \-\hspace{10mm} \textbf{for} node in $frontierA$ \\
 \-\hspace{20mm} \textbf{if} node in $frontier\Omega$ \\
-\-\hspace{30mm} \textbf{return} solution \\ 
+\-\hspace{30mm} \textbf{return} solution\ \ \footnote{Dequeues nodes from exploredA and also pops nodes from explored$\Omega$. Also ensures that the common node isn't repeated.} \\ 
 \-\hspace{10mm} \textit{//Expands node A} \\
 \-\hspace{10mm} $nodeA \leftarrow \ Pop(frontierA)$ \\
 \-\hspace{10mm} \textbf{for} childNode attached to nodeA \\
