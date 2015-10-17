@@ -303,6 +303,7 @@ $explored\Omega \leftarrow stack$
 \-\hspace{40mm} Queue(nodeA, $frontierA$) \\
 \-\hspace{30mm} \textbf{else if} childNode in $frontierA$ with higher cost\\
 \-\hspace{40mm} Replace(childNode, $frontierA$) \\
+\-\hspace{20mm} Queue(node$A$, $exploredA$) \\
 \-\hspace{20mm} \textit{//Expands node $\Omega$} \\
 \-\hspace{20mm} $node\Omega \leftarrow \ Pop(frontier\Omega)$ \\
 \-\hspace{20mm} \textbf{for} childNode attached to node$\Omega$ \\
@@ -310,8 +311,11 @@ $explored\Omega \leftarrow stack$
 \-\hspace{40mm} Queue(node$\Omega$, $frontier\Omega$) \\
 \-\hspace{30mm} \textbf{else if} childNode in $frontier\Omega$ with higher cost\\
 \-\hspace{40mm} Replace(childNode, $frontier\Omega$) \\
+\-\hspace{20mm} Queue(node$\Omega$, $explored\Omega$) \\
 \-\hspace{10mm} \textbf{return} failure \footnote{No path could be found.} \\
 \textbf{end}
 \\~\\
+\newpage
+\subsection{Answer - Brief Explanation}
 This algorithm works off of the fact that to expand a node, you must have an optimal path to it. If both searches have expanded a node, this means that an optimal path has been found between the start state and the node, and between the node and the goal state. By extension, this means that you have found an optimal path from the start state to the end state.
 \end{document}
