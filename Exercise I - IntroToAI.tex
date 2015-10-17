@@ -278,7 +278,8 @@ $$ABEGO$$
 \flushleft\textit{Design an algorithm for bi-directional search that would allow you to search for an optimal
 solution with respect to path costs. [10$\%$ - 10 marks]}
 \subsection{Answer}
-\textit{let Queue(x, y) $\leftarrow$ Queues node x in priority queue y} \\
+\textit{let Queue(x, y) $\leftarrow$ Queues node x in queue y} \\
+\textit{let Push(x, y) $\leftarrow$ Pushes node x onto stack y} \\
 \textit{let Replace(x, y) $\leftarrow$ Replaces node x in priority queue y with the argument x which has a lower total path cost}
 \\~\\
 $f \leftarrow cumulative\ path\ cost\ from\ the\ start\ state$ \\
@@ -311,11 +312,13 @@ $explored\Omega \leftarrow stack$
 \-\hspace{40mm} Queue(node$\Omega$, $frontier\Omega$) \\
 \-\hspace{30mm} \textbf{else if} childNode in $frontier\Omega$ with higher cost\\
 \-\hspace{40mm} Replace(childNode, $frontier\Omega$) \\
-\-\hspace{20mm} Queue(node$\Omega$, $explored\Omega$) \\
+\-\hspace{20mm} Push(node$\Omega$, $explored\Omega$) \\
 \-\hspace{10mm} \textbf{return} failure \footnote{No path could be found.} \\
 \textbf{end}
 \\~\\
 \newpage
 \subsection{Answer - Brief Explanation}
 This algorithm works off of the fact that to expand a node, you must have an optimal path to it. If both searches have expanded a node, this means that an optimal path has been found between the start state and the node, and between the node and the goal state. By extension, this means that you have found an optimal path from the start state to the end state.
+\\~\\
+In order to give a solution, dequeue all of the nodes from $exploredA$ into a set, S, and then pop all of the nodes from $explored\Omega$ into the same set, S. This will give you the solution.
 \end{document}
