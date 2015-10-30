@@ -237,4 +237,20 @@ $$\lnot R,\ P \to \lnot Q,\ R \to Q,\ P \lor R : \lnot Q$$
 \section{Question 3}
 \subsection{Brief}
 $$:((A \lor B) \land (\lnot B)) \to A$$
+\subsection{Answer}
+\begin{equation*}
+\begin{fitch}
+\fh ((A\lor B) \land (\lnot B)) & Hypothesis \ \ \ $\bf{\left\{1\right\}}$ \\
+\fa A \lor B & $\land$ - Elimination(1) \ \ \ $\bf{\left\{1\right\}}$ \\
+\fa \fh A & Hypothesis \ \ \ $\bf{\left\{1,3\right\}}$ \\
+\fa \fa A & Iteration(3) \ \ \ $\bf{\left\{1, 3\right\}}$ \\
+\fa \fh B & Hypothesis \ \ \ $\bf{\left\{1, 5\right\}}$ \\
+\fa \fa \fh \lnot A & Hypothesis \ \ \ $\bf{\left\{1, 5, 6\right\}}$ \\
+\fa \fa \fa B & Iteration(5) \ \ \ $\bf{\left\{1, 5, 6\right\}}$ \\
+\fa \fa \fa \lnot B & $\land$-Elimination(1) \ \ \ $\bf{\left\{1, 5, 6\right\}}$ \\
+\fa \fa A & Reductio Ad Absurdum$($5,6,7,8$)$ \ \ \ $\bf{\left\{1, 5, 6\right\}}$ \\ 
+\fa A & $\lor$-Elimination$($2,3,4,5,9$)$ \ \ \ $\bf{\left\{1\right\}}$ \\
+((A\lor B) \land (\lnot B)) & $\to$ Introduction$($1,10$)$ \ \ \ $\bf{\left\{\right\}}$ \\
+\end{fitch}
+\end{equation*}
 \end{document}
