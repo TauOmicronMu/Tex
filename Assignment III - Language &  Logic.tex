@@ -1,0 +1,85 @@
+documentclass{article}
+\usepackage{latexsym}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{gensymb}
+\usepackage[margin=1.2in]{geometry}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{amsthm}
+\usepackage{blkarray}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{tikz}
+\usepackage[]{algorithm2e}
+\usepackage{algpseudocode}
+
+\usepackage{framed}
+\usepackage{fancyhdr}
+\setcounter{page}{0}
+\fancypagestyle{plain}{%
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Tom Goodman}
+\lhead{\leftmark}
+\chead{Language & Logic - Assignment III}
+\cfoot{\thepage} 
+\renewcommand{\footrulewidth}{2pt}}
+\pagestyle{plain}
+\newcounter{thrmcount}[section]
+
+\usepackage{graphicx}
+    \graphicspath{ {/home/txg523/Desktop} }
+
+\newenvironment{thrm}
+	{\begin{leftbar}\noindent\ignorespaces\textbf{Theorem \arabic{section}.\arabic{thrmcount}.}\par\noindent\ignorespaces}		
+	{\end{leftbar}\stepcounter{thrmcount}\noindent\ignorespaces}
+\newenvironment{lem}
+	{\begin{leftbar}\noindent\ignorespaces\textbf{Lemma \arabic{section}.\arabic{thrmcount}.}\par\noindent\ignorespaces}		
+	{\end{leftbar}\stepcounter{thrmcount}\noindent\ignorespaces}
+\newenvironment{nthrm}[1]	
+	{\begin{leftbar}\noindent\ignorespaces\textbf{Theorem \arabic{section}.\arabic{thrmcount}.} \textit{(#1)}\par\noindent\ignorespaces}
+	{\end{leftbar}\stepcounter{thrmcount}\noindent\ignorespaces}
+\newenvironment{nlem}[1]
+	{\begin{leftbar}\noindent\ignorespaces\textbf{Lemma \arabic{section}.\arabic{thrmcount}.} \textit{(#1)}\par\noindent\ignorespaces}
+	{\end{leftbar}\stepcounter{thrmcount}\noindent\ignorespaces}
+\newenvironment{defn}
+	{\begin{leftbar}\noindent\ignorespaces\textbf{Definition.}\par\noindent\ignorespaces}
+	{\end{leftbar}\noindent\ignorespaces}
+\newenvironment{nproof}
+	{\begin{proof}}
+	{\newline\end{proof}\noindent\ignorespaces}
+\newenvironment{prop}
+	{\begin{leftbar}\noindent\ignorespaces\textbf{Proposition \arabic{section}.\arabic{thrmcount}.}\par\noindent\ignorespaces}		
+	{\end{leftbar}\stepcounter{thrmcount}\noindent\ignorespaces}
+\newenvironment{fact}
+	{\begin{leftbar}\noindent\ignorespaces\textbf{Fact \arabic{section}.\arabic{thrmcount}.}\par\noindent\ignorespaces}		
+	{\end{leftbar}\stepcounter{thrmcount}\noindent\ignorespaces}
+\newenvironment{crl}
+	{\begin{leftbar}\noindent\ignorespaces\textbf{Corollary \arabic{section}.\arabic{thrmcount}.}\par\noindent\ignorespaces}		
+	{\end{leftbar}\stepcounter{thrmcount}\noindent\ignorespaces}	
+\newenvironment{ex}[1]
+	{\begin{leftbar}\noindent\ignorespaces\textbf{Example.} (\textit{#1})\par\noindent\ignorespaces}
+	{\end{leftbar}\noindent\ignorespaces}
+\newenvironment{exa}
+	{\begin{leftbar}\noindent\ignorespaces\textbf{Example.}\par\noindent\ignorespaces}
+	{\end{leftbar}\noindent\ignorespaces}
+\newcommand\ddfrac[2]{\frac{\displaystyle #1}{\displaystyle #2}}
+\newcommand{\appropto}{\mathrel{\vcenter{
+  \offinterlineskip\halign{\hfil$##$\cr
+    \propto\cr\noalign{\kern2pt}\sim\cr\noalign{\kern-2pt}}}}}
+\title{Natural Deduction}
+\author{Tom Goodman}
+\date{}
+\begin{document}
+\begin{titlepage}
+	\begin{flushleft}
+		\vspace*{1cm}
+		\Huge
+		\textbf{Language & Logic - Assignment III} \\
+		\vspace*{1cm}
+		\Large
+		\textbf{Tom Goodman} \\
+	\end{flushleft}
+\end{titlepage}
+\end{document}
