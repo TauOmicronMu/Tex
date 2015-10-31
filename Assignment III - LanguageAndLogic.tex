@@ -221,16 +221,16 @@ $$\lnot R,\ P \to \lnot Q,\ R \to Q,\ P \lor R : \lnot Q$$
 \subsection{Answer}
 \begin{equation*}
 \begin{fitch}
-\fh           P & Hypothesis \ \ \ $\bf{\left\{1\right\}}$ \\
-\fa P \to \lnot Q & Premise \ \ \ $\bf{\left\{1,2\right\}}$ \\
-\fa \lnot Q & $\to$ Elimination(1,2) \ \ \ $\bf{\left\{1,2\right\}}$ \\
-\fh R & Hypothesis \ \ \ $\bf{\left\{4\right\}}$ \\
-\fa \fh Q & Hypothesis \ \ \ $\bf{\left\{4,5\right\}}$ \\
-\fa \fa \lnot R & Premise \ \ \ $\bf{\left\{4,5,6\right\}}$ \\
-\fa \fa R & Iteration \ \ \ $\bf{\left\{4,5\right\}}$ \\
-\fa \lnot Q & Reductio Ad Absurdum(5,6,7) \ \ \ $\bf{\left\{4,6\right\}}$ \\
-\fa P \lor R & Premise \ \ \ $\bf{\left\{4,9\right\}}$ \\
-\lnot Q & $\lor$-Elimination(1,4,9) \ \ \ $\bf{\left\{9\right\}}$ \\
+P \lor R & Premise \ \ \ $\bf{\left\{1\right\}}$ \\
+\fh           P & Hypothesis \ \ \ $\bf{\left\{2\right\}}$ \\
+\fa P \to \lnot Q & Premise \ \ \ $\bf{\left\{2,3\right\}}$ \\
+\fa \lnot Q & $\to$ Elimination(2,3) \ \ \ $\bf{\left\{2,3\right\}}$ \\
+\fh R & Hypothesis \ \ \ $\bf{\left\{5\right\}}$ \\
+\fa \fh Q & Hypothesis \ \ \ $\bf{\left\{5,6\right\}}$ \\
+\fa \fa \lnot R & Premise \ \ \ $\bf{\left\{5,6,7\right\}}$ \\
+\fa \fa R & Iteration \ \ \ $\bf{\left\{5.6\right\}}$ \\
+\fa \lnot Q & Reductio Ad Absurdum(6,7,8) \ \ \ $\bf{\left\{5,7\right\}}$ \\
+\lnot Q & $\lor$-Elimination(1,2,4,5,9) \ \ \ $\bf{\left\{1\right\}}$ \\
 \end{fitch}
 \end{equation*}
 \newpage
