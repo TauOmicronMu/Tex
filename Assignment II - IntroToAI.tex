@@ -1,0 +1,191 @@
+\documentclass{article}
+\usepackage{latexsym}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{gensymb}
+\usepackage[margin=1.2in]{geometry}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{amsthm}
+\usepackage{blkarray}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{tikz}
+\usepackage[]{algorithm2e}
+\usepackage{algpseudocode}
+
+\usepackage{framed}
+\usepackage{fancyhdr}
+\setcounter{page}{0}
+\fancypagestyle{plain}{%
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Tom Goodman}
+\lhead{\leftmark}
+\chead{Introduction to AI - Exercise II}
+\cfoot{\thepage} 
+\renewcommand{\footrulewidth}{2pt}}
+\pagestyle{plain}
+\newcounter{thrmcount}[section]
+
+\usepackage{graphicx}
+    \graphicspath{ {/home/txg523/Desktop/Tex} }
+    
+\usepackage{hhline}
+
+\newenvironment{thrm}
+	{\begin{leftbar}\noindent\ignorespaces\textbf{Theorem \arabic{section}.\arabic{thrmcount}.}\par\noindent\ignorespaces}		
+	{\end{leftbar}\stepcounter{thrmcount}\noindent\ignorespaces}
+\newenvironment{lem}
+	{\begin{leftbar}\noindent\ignorespaces\textbf{Lemma \arabic{section}.\arabic{thrmcount}.}\par\noindent\ignorespaces}		
+	{\end{leftbar}\stepcounter{thrmcount}\noindent\ignorespaces}
+\newenvironment{nthrm}[1]	
+	{\begin{leftbar}\noindent\ignorespaces\textbf{Theorem \arabic{section}.\arabic{thrmcount}.} \textit{(#1)}\par\noindent\ignorespaces}
+	{\end{leftbar}\stepcounter{thrmcount}\noindent\ignorespaces}
+\newenvironment{nlem}[1]
+	{\begin{leftbar}\noindent\ignorespaces\textbf{Lemma \arabic{section}.\arabic{thrmcount}.} \textit{(#1)}\par\noindent\ignorespaces}
+	{\end{leftbar}\stepcounter{thrmcount}\noindent\ignorespaces}
+\newenvironment{defn}
+	{\begin{leftbar}\noindent\ignorespaces\textbf{Definition.}\par\noindent\ignorespaces}
+	{\end{leftbar}\noindent\ignorespaces}
+\newenvironment{nproof}
+	{\begin{proof}}
+	{\newline\end{proof}\noindent\ignorespaces}
+\newenvironment{prop}
+	{\begin{leftbar}\noindent\ignorespaces\textbf{Proposition \arabic{section}.\arabic{thrmcount}.}\par\noindent\ignorespaces}		
+	{\end{leftbar}\stepcounter{thrmcount}\noindent\ignorespaces}
+\newenvironment{fact}
+	{\begin{leftbar}\noindent\ignorespaces\textbf{Fact \arabic{section}.\arabic{thrmcount}.}\par\noindent\ignorespaces}		
+	{\end{leftbar}\stepcounter{thrmcount}\noindent\ignorespaces}
+\newenvironment{crl}
+	{\begin{leftbar}\noindent\ignorespaces\textbf{Corollary \arabic{section}.\arabic{thrmcount}.}\par\noindent\ignorespaces}		
+	{\end{leftbar}\stepcounter{thrmcount}\noindent\ignorespaces}	
+\newenvironment{ex}[1]
+	{\begin{leftbar}\noindent\ignorespaces\textbf{Example.} (\textit{#1})\par\noindent\ignorespaces}
+	{\end{leftbar}\noindent\ignorespaces}
+\newenvironment{exa}
+	{\begin{leftbar}\noindent\ignorespaces\textbf{Example.}\par\noindent\ignorespaces}
+	{\end{leftbar}\noindent\ignorespaces}
+\newcommand\ddfrac[2]{\frac{\displaystyle #1}{\displaystyle #2}}
+\newcommand{\appropto}{\mathrel{\vcenter{
+  \offinterlineskip\halign{\hfil$##$\cr
+    \propto\cr\noalign{\kern2pt}\sim\cr\noalign{\kern-2pt}}}}}
+\title{Introduction to AI - Exercise II}
+\author{Tom Goodman}
+\date{}
+\begin{document}
+\begin{titlepage}
+	\begin{flushleft}
+		\vspace*{1cm}
+		\Huge
+		\textbf{Introduction to AI - Exercise II} \\
+		\vspace*{1cm}
+		\Large
+		\textbf{Tom Goodman} \\
+	\end{flushleft}
+\end{titlepage}
+\newpage
+\section{Question One}
+\subsection{Brief}
+\textit{Draw a semantic net that represents the following data:} $[20\%]$
+\begin{center}
+\textit{Tom is a cat. \\
+Tom caught a bird. \\ 
+Tom is owned by John. \\
+Tom is ginger in colour. \\
+Cats like cream. \\
+The cat sat on the mat. \\
+A cat is a mammal. \\ 
+A bird is an animal. \\
+All mammals are animals. \\
+Mammals have fur.}
+\end{center}
+
+\subsection{Answer}
+\begin{center}
+\includegraphics{IntroToAIE2SemanticWeb.png}
+\end{center}
+\newpage
+\section{Question Two}
+\subsection{Brief}
+\textit{There are three hardware companies manufacturing graphics cards. The table below gives
+the single joint probability distribution for the following two random variables:}
+$[20\%]$ \\
+\newline
+\textit{(a) a card is good or defective, \\
+(b) a card has been manufactured by company X.} 
+\begin{center}
+\begin{tabular}{cc || c | c}
+\multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{\textbf{G}} & \multicolumn{1}{c}{\textbf{D}} \\
+$\ $ & \textit{Company} & \textit{Good} & \textit{Defective} \\ \hhline{~=#=|=}
+\textbf{A} & \textit{Alf-Leiters} & 0.475 &  0.025 \\ \hhline{~-|-|-}
+\textbf{B} & \textit{ Biodes $\&$ Son} & 0.279 & 0.021 \\ \hhline{~-|-|-}
+\textbf{C} & \textit{Condictors Ltd.} & 0.180 & 0.020 \\
+\end{tabular}
+\end{center}
+\textit{Consider the following questions: \\
+\newline
+(a) What is the market share of Alf-Leiters? \\ 
+(b) What is the probability a randomly selected card is defective? \\
+(c) What is the likelihood of Condictors Ltd. producing a defective card? \\
+(d) What is the probability that a defective product came from Biodes $\&$ Son? \\
+(e) Show whether or not the two events “Product is defective” and “Product is from
+company X” are independent.
+}
+\subsection{Answer - (a)}
+Market share of \textbf{A} is:
+$$0.475 + 0.025 = 0.5$$
+
+\subsection{Answer - (b)}
+Randomly selected card is defective =
+\begin{align*}
+\sum\nolimits_{D_i} P(D), \ \ \ D_{i} &= (A_{D}, B_{D}, C_{D}) \\
+&= 0.025 + 0.021 + 0.020 = 0.066
+\end{align*}
+
+\subsection{Answer - (c)}
+Since we are finding the probability that the card is defective given that it was manufactured by company \textbf{C}, \\
+$$P(D|C) = \ddfrac{P(D\cap C)}{P(C)}$$
+$$P(D\cap C) = 0.020,\ which\ is\ the\ probability\ that\ it\ is\ defective\ and\ from\ company\ \textbf{C}.$$
+$$P(C) = 0.120 + 0.080,\ which\ is\ the\ market\ share\ of\ \textbf{C}.$$
+$$Hence,\ \ P(D|C) = \ddfrac{0.020}{0.200} = 0.1$$
+
+\newpage
+\subsection{Answer - (d)}
+Since we are finding the probability that company \textbf{B} make the card, given that it is defective, \\
+$$P(B|D) = \ddfrac{P(B\cap D)}{P(D)}$$
+$$P(B\cap D) = 0.021\ which\ is\ the\ probability\ that\ it\ is\ defective\ and\ from\ company\ \textbf{B}.$$
+$$P(D) = 0.066,\ (see\ Answer\ \textbf{(b)}).$$
+$$Hence,\ \ P(B|D) = \ddfrac{0.021}{0.066} = \ddfrac{7}{22} \approx 0.\overline{318} $$
+
+\subsection{Answer - (e)}
+Two events, A and B, are independent iff $P(A\cap B) = P(A)P(B)$.
+This means we need to test the following cases for independence:
+$$P(D) \land P(A)$$
+$$P(D) \land P(B)$$
+$$P(D) \land P(C)$$
+
+\begin{align*}
+P(D\cap A) &= 0.025 \\
+P(D)P(A) &= 0.066 \cdot 0.5 = 0.033
+\end{align*}
+Since $P(D\cap A) \neq P(D)P(A)$, the two are dependent.
+\\
+
+\begin{align*}
+P(D\cap B) &= 0.021 \\
+P(D)P(B) &= 0.066 \cdot 0.3 = 0.0198
+\end{align*}
+Since $P(D\cap B) \neq P(D)P(B)$, the two are dependent.
+\\
+
+\begin{align*}
+P(D\cap C) &= 0.020 \\
+P(D)P(C) &= 0.066 \cdot 0.2 = 0.0132 \\ 
+\end{align*}
+Since $P(D\cap C) \neq P(D)P(C)$, the two are dependent.
+\\
+
+Hence, the events "Product is defective" and "Product is from company X" are dependent.
+ 
+\end{document}
