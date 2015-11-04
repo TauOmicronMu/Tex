@@ -147,7 +147,7 @@ Randomly selected card is defective =
 Since we are finding the probability that the card is defective given that it was manufactured by company \textbf{C}, \\
 $$P(D|C) = \ddfrac{P(D\cap C)}{P(C)}$$
 $$P(D\cap C) = 0.020,\ which\ is\ the\ probability\ that\ it\ is\ defective\ and\ from\ company\ \textbf{C}.$$
-$$P(C) = 0.120 + 0.080,\ which\ is\ the\ market\ share\ of\ \textbf{C}.$$
+$$P(C) = 0.180 + 0.020,\ which\ is\ the\ market\ share\ of\ \textbf{C}.$$
 $$Hence,\ \ P(D|C) = \ddfrac{0.020}{0.200} = 0.1$$
 
 \newpage
@@ -188,4 +188,140 @@ Since $P(D\cap C) \neq P(D)P(C)$, the two are dependent.
 
 Hence, the events "Product is defective" and "Product is from company X" are dependent.
  
+\newpage
+\section{Question 3}
+\subsection{Brief}
+\textit{
+The following is a small planning problem, involving moving passengers using planes. The
+predicates for the domain are: \\
+\newline
+at(Person, Airport), place(Airport), passenger(Person),
+atPlane(Airport), emptyPlane, onPlane(Person), planeless(Airport)\\
+\newline
+The Strips operators are:\\
+\newline
+BOARD(X,Y) \\
+\-\hspace{10mm} Preconditions: at(X,Y), place(Y), passenger(X), atPlane(Y), emptyPlane \\
+\-\hspace{10mm} Delete List: at(X,Y), emptyPlane \\
+\-\hspace{10mm} Add List: onPlane(X) \\
+\newline
+FLY(X,Y) \\
+\-\hspace{10mm} Preconditions: atPlane(X), place(X), place(Y), planeless(Y) \\
+\-\hspace{10mm} Delete List: atPlane(X), planeless(Y) \\
+\-\hspace{10mm} Add List: atPlane(Y), planeless(X) \\
+\newline
+DISEMBARK(X,Y) \\
+\-\hspace{10mm} Preconditions: onPlane(X), passenger(X), place(Y), atPlane(Y) \\
+\-\hspace{10mm} Delete List:onPlane(X) \\
+\-\hspace{10mm} Add List: at(X,Y), emptyPlane \\
+\newline
+Show how STRIPS would solve this planning problem using forward chaining for the
+initial and goal state below. Assume that STRIPS always makes the correct choice.
+Write down carefully all the intermediate states. $[30\%]$ \\
+\newline
+\textbf{Initial State}: place(bhx),
+place(cdg), passenger(john), at(john,bhx), passenger(mary), at(mary, cdg), \\
+atPlane(bhx), planeless(cdg), emptyPlane \\ \newline 
+\textbf{Goal State}: at(john, cdg), at(mary, bhx)
+}
+\subsection{Answer}
+place(bhx),
+place(cdg), passenger(john), at(john,bhx), passenger(mary), at(mary, cdg), \\
+atPlane(bhx), planeless(cdg), emptyPlane \\ 
+\newline 
+BOARD(john, bhx) \\
+\-\hspace{10mm}  	- at(john, bhx) \\
+\-\hspace{10mm}  	- emptyPlane \\
+\-\hspace{10mm}  	+ onPlane(john) \\
+\newline
+place(bhx),
+place(cdg), passenger(john), passenger(mary), at(mary, cdg), \\
+atPlane(bhx), planeless(cdg), onPlane(john)\\ 
+\newline
+FLY(bhx, cdg) \\
+\-\hspace{10mm} 	- atPlane(bhx) \\
+\-\hspace{10mm} 	- planeless(cdg) \\
+\-\hspace{10mm} 	+ atPlane(cdg) \\
+\-\hspace{10mm} 	+ planeless(bhx) \\
+\newline
+place(bhx),
+place(cdg), passenger(john), passenger(mary), at(mary, cdg), \\
+onPlane(john), atPlane(cdg), planeless(bhx),\\ 
+\newline
+DISEMBARK(john, cdg) \\
+\-\hspace{10mm} 	- onPlane(john) \\
+\-\hspace{10mm} 	+ at(john, cdg) \\
+\-\hspace{10mm} 	+ emptyPlane \\
+\newline
+place(bhx),
+place(cdg), passenger(john), passenger(mary), at(mary, cdg), \\
+atPlane(cdg), planeless(bhx), at(john, cdg), emptyPlane\\ 
+\newline
+BOARD(mary, cdg) \\
+\-\hspace{10mm} 	- at(mary, cdg) \\
+\-\hspace{10mm} 	- emptyPlane \\
+\-\hspace{10mm} 	+ onPlane(mary) \\
+\newline
+place(bhx),
+place(cdg), passenger(john), passenger(mary), atPlane(cdg), \\
+planeless(bhx), at(john, cdg), onPlane(mary)\\ 
+\newline
+FLY(cdg, bhx) \\
+\-\hspace{10mm} 	- atPlane(cdg) \\
+\-\hspace{10mm} 	- planeless(bhx) \\
+\-\hspace{10mm} 	+ atPlane(bhx) \\
+\-\hspace{10mm} 	+ planeless(cdg) \\
+\newline
+place(bhx),
+place(cdg), passenger(john), passenger(mary), at(john, cdg), \\
+onPlane(mary), atPlane(bhx), planeless(cdg) \\
+\newline
+DISEMBARK(mary, bhx) \\
+\-\hspace{10mm} - onPlane(mary \\
+\-\hspace{10mm} + at(mary, bhx) \\
+\-\hspace{10mm} + emptyPlane \\
+\newline
+place(bhx),
+place(cdg), passenger(john), passenger(mary), at(john, cdg), \\
+atPlane(bhx), planeless(cdg), at(mary, bhx), emptyPlane \\
+\newpage
+\section{Question 4}
+\subsection{Brief}
+\textit{
+Take the previous planning example: \\
+\newline
+(a) Extend the formalisation to allow for multiple planes. \\
+(b) Reformulate the previous problem to include two planes: one at CDG and one at
+BHX.\\
+(c) Read up on Partial Order Plans in the textbook AI:AMA. Give a partial order plan
+to solve the planning problem. \\
+(d) How many total order plans can you compile from the partial order plan? $[30\%]$ \\}
+\subsection{Answer - (a)}
+Assuming that each airport can now house multiple planes. \\
+\newline
+\textbf{Predicates: }\\
+\newline
+at(Person, Airport), place(Airport), passenger(Person),
+atPlane(Airport, Plane), emptyPlane(Plane), onPlane(Person, Plane), plane(Plane) \\
+\newline
+\textbf{Strips operators: }\\
+\newline
+BOARD(X,Y,Z) \\
+\-\hspace{10mm} Preconditions: at(X,Y), place(Y), passenger(X), plane(Z), atPlane(Y,Z), emptyPlane(Z) \\
+\-\hspace{10mm} Delete List: at(X,Y), emptyPlane(Z) \\
+\-\hspace{10mm} Add List: onPlane(X,Z) \\
+\newline
+FLY(X,Y,Z) \\
+\-\hspace{10mm} Preconditions: atPlane(X,Z), place(X), place(Y), plane(Z) \\
+\-\hspace{10mm} Delete List: atPlane(X,Z) \\
+\-\hspace{10mm} Add List: atPlane(Y,Z) \\
+\newline
+DISEMBARK(X,Y,Z) \\
+\-\hspace{10mm} Preconditions: onPlane(X,Z), passenger(X), place(Y), plane(Z), atPlane(Y,Z) \\
+\-\hspace{10mm} Delete List:onPlane(X,Z) \\
+\-\hspace{10mm} Add List: at(X,Y), emptyPlane(Z) \\
+\newline
+\subsection{Answer - (b)}
+\subsection{Answer - (c)}
+\subsection{Answer - (d)}
 \end{document}
