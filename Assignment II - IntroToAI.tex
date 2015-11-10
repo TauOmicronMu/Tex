@@ -326,7 +326,20 @@ atPlane(bhx), emptyPlane(), emptyPlane(), atPlane(cdg) \\
 \newline 
 \textbf{Goal State}: at(john, cdg), at(mary, bhx)
 \subsection{Answer - (c)}
+\begin{center}
 \includegraphics{IntroToAIE2PartialPlan.png}
+\end{center}
 \subsection{Answer - (d)}
+Let the LHS of the plan be x1, x2 and x3 respectively. Similarly, let the RHS of the plan be y1, y2 and y3 respectively. There are four possible placements of our x1/y1 values: \\
+
+$$ x1\ x2\ x3\ y1\ y2\ y3\ $$
+$$ y1\ x1\ x2\ x3\ y2\ y3\ $$
+$$ x1\ y1\ x2\ x3\ y2\ y3\ $$
+$$ x1\ x2\ y1\ x3\ y2\ y3\ $$
+
+Hence, there are also 10 possible places for our x2/y2 values. We subtract 4 from this though, to avoid repetition. Finally, there are twenty possible places for our x3/y3 values. We subtract 10 from this to avoid repetition. This gives us:
+
+$$4 + 6 + 10 = 20$$
+Hence, there are 20 total-order plans that can be compiled from our partial-order plan.
 
 \end{document}
