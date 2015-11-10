@@ -300,32 +300,34 @@ Assuming that each airport can now house multiple planes. \\
 \textbf{Predicates: }\\
 \newline
 at(Person, Airport), place(Airport), passenger(Person),
-atPlane(Airport, Plane), emptyPlane(), onPlane(Person) \\
+atPlane(Airport, Plane), emptyPlane(Plane), \\
+onPlane(Person, Plane), plane(Plane) \\
 \newline
 \textbf{Strips operators: }\\
 \newline
-BOARD(X,Y) \\
-\-\hspace{10mm} Preconditions: at(X,Y), place(Y), passenger(X), atPlane(Y), emptyPlane() \\
-\-\hspace{10mm} Delete List: at(X,Y), emptyPlane() \\
-\-\hspace{10mm} Add List: onPlane(X) \\
+BOARD(X,Y,Z) \\
+\-\hspace{10mm} Preconditions: at(X,Y,Z), place(Y), passenger(X), plane(Z), atPlane(Y,Z), emptyPlane(Z) \\
+\-\hspace{10mm} Delete List: at(X,Y), emptyPlane(Z) \\
+\-\hspace{10mm} Add List: onPlane(X,Z) \\
 \newline
-FLY(X,Y) \\
-\-\hspace{10mm} Preconditions: atPlane(X), place(X), place(Y)\\
-\-\hspace{10mm} Delete List: atPlane(X) \\
-\-\hspace{10mm} Add List: atPlane(Y) \\
+FLY(X,Y,Z) \\
+\-\hspace{10mm} Preconditions: atPlane(X,Z), place(X), place(Y), plane(Z)\\
+\-\hspace{10mm} Delete List: atPlane(X,Z) \\
+\-\hspace{10mm} Add List: atPlane(Y,Z) \\
 \newline
-DISEMBARK(X,Y) \\
-\-\hspace{10mm} Preconditions: onPlane(X), passenger(X), place(Y), atPlane(Y) \\
-\-\hspace{10mm} Delete List: onPlane(X) \\
-\-\hspace{10mm} Add List: at(X,Y), emptyPlane() \\
+DISEMBARK(X,Y.Z) \\
+\-\hspace{10mm} Preconditions: onPlane(X,Z), passenger(X), place(Y), plane(Z), atPlane(Y,Z) \\
+\-\hspace{10mm} Delete List: onPlane(X,Z) \\
+\-\hspace{10mm} Add List: at(X,Y), emptyPlane(Z) \\
 \newline
 \subsection{Answer - (b)}
 \textbf{Initial State}: place(bhx),
 place(cdg), passenger(john), at(john,bhx), passenger(mary), at(mary, cdg), \\
-atPlane(bhx), emptyPlane(), emptyPlane(), atPlane(cdg) \\
+atPlane(bhx.$\alpha$), emptyPlane($\alpha$), emptyPlane($\omega$), atPlane(cdg,$\omega$) \\
 \newline 
 \textbf{Goal State}: at(john, cdg), at(mary, bhx)
 \subsection{Answer - (c)}
+For the sake of conciseness, I have omitted the Plane predicate from the partial order plan, as it doesn't matter which plane they fly on.
 \begin{center}
 \includegraphics{IntroToAIE2PartialPlan.png}
 \end{center}
