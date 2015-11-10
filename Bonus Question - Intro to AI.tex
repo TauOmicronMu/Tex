@@ -1,0 +1,131 @@
+\documentclass{article}
+\usepackage{latexsym}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{gensymb}
+\usepackage[margin=1.2in]{geometry}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{amsthm}
+\usepackage{blkarray}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{tikz}
+
+\usepackage{framed}
+\usepackage{fancyhdr}
+\setcounter{page}{0}
+\fancypagestyle{plain}{%
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Tom Goodman}
+\lhead{\leftmark}
+\chead{Introduction to AI - Exercise II}
+\cfoot{\thepage} 
+\renewcommand{\footrulewidth}{2pt}}
+\pagestyle{plain}
+\newcounter{thrmcount}[section]
+
+\usepackage{graphicx}
+    \graphicspath{ {/home/txg523/Desktop/Tex} }
+    
+\usepackage{hhline}
+
+\newenvironment{thrm}
+	{\begin{leftbar}\noindent\ignorespaces\textbf{Theorem \arabic{section}.\arabic{thrmcount}.}\par\noindent\ignorespaces}		
+	{\end{leftbar}\stepcounter{thrmcount}\noindent\ignorespaces}
+\newenvironment{lem}
+	{\begin{leftbar}\noindent\ignorespaces\textbf{Lemma \arabic{section}.\arabic{thrmcount}.}\par\noindent\ignorespaces}		
+	{\end{leftbar}\stepcounter{thrmcount}\noindent\ignorespaces}
+\newenvironment{nthrm}[1]	
+	{\begin{leftbar}\noindent\ignorespaces\textbf{Theorem \arabic{section}.\arabic{thrmcount}.} \textit{(#1)}\par\noindent\ignorespaces}
+	{\end{leftbar}\stepcounter{thrmcount}\noindent\ignorespaces}
+\newenvironment{nlem}[1]
+	{\begin{leftbar}\noindent\ignorespaces\textbf{Lemma \arabic{section}.\arabic{thrmcount}.} \textit{(#1)}\par\noindent\ignorespaces}
+	{\end{leftbar}\stepcounter{thrmcount}\noindent\ignorespaces}
+\newenvironment{defn}
+	{\begin{leftbar}\noindent\ignorespaces\textbf{Definition.}\par\noindent\ignorespaces}
+	{\end{leftbar}\noindent\ignorespaces}
+\newenvironment{nproof}
+	{\begin{proof}}
+	{\newline\end{proof}\noindent\ignorespaces}
+\newenvironment{prop}
+	{\begin{leftbar}\noindent\ignorespaces\textbf{Proposition \arabic{section}.\arabic{thrmcount}.}\par\noindent\ignorespaces}		
+	{\end{leftbar}\stepcounter{thrmcount}\noindent\ignorespaces}
+\newenvironment{fact}
+	{\begin{leftbar}\noindent\ignorespaces\textbf{Fact \arabic{section}.\arabic{thrmcount}.}\par\noindent\ignorespaces}		
+	{\end{leftbar}\stepcounter{thrmcount}\noindent\ignorespaces}
+\newenvironment{crl}
+	{\begin{leftbar}\noindent\ignorespaces\textbf{Corollary \arabic{section}.\arabic{thrmcount}.}\par\noindent\ignorespaces}		
+	{\end{leftbar}\stepcounter{thrmcount}\noindent\ignorespaces}	
+\newenvironment{ex}[1]
+	{\begin{leftbar}\noindent\ignorespaces\textbf{Example.} (\textit{#1})\par\noindent\ignorespaces}
+	{\end{leftbar}\noindent\ignorespaces}
+\newenvironment{exa}
+	{\begin{leftbar}\noindent\ignorespaces\textbf{Example.}\par\noindent\ignorespaces}
+	{\end{leftbar}\noindent\ignorespaces}
+\newcommand\ddfrac[2]{\frac{\displaystyle #1}{\displaystyle #2}}
+\newcommand{\appropto}{\mathrel{\vcenter{
+  \offinterlineskip\halign{\hfil$##$\cr
+    \propto\cr\noalign{\kern2pt}\sim\cr\noalign{\kern-2pt}}}}}
+\title{Introduction to AI - Exercise II}
+\author{Tom Goodman}
+\date{}
+\begin{document}
+\begin{titlepage}
+	\begin{flushleft}
+		\vspace*{1cm}
+		\Huge
+		\textbf{Introduction to AI - Bonus Question} \\
+		\vspace*{1cm}
+		\Large
+		\textbf{Tom Goodman} \\
+	\end{flushleft}
+\end{titlepage}
+\newpage
+\section{Question}
+\textit{In the National Football League (NFL), the likelihood that a team wins a game
+when loosing 4+ turnovers (i.e., 4 turnovers or more) in that game is 13.3$\%$.
+However, the percentage of games won by a team loosing 4+ turnovers is 24$\%$ if
+their opponent is the Cleveland Browns.}\\
+
+\textit{There are 32 teams in the NFL. What is the likelihood of a team winning a game
+in which they loose 4+ turnovers, if their opponent is NOT the Cleveland Browns?}\\
+\section{Answer}
+let, \\
+\-\hspace{10mm} W = Winning a game but losing 4 turnovers. \\
+\-\hspace{10mm} C = Playing against the Cleveland Browns. \\
+
+Then P(W) = 0.133, since the $\%$ is 13.3$\%$. Also, P(W$|$C) = 0.24, since the $\%$ is 24.0$\%$. \\
+
+Assuming that playing any team is equally likely, we know that P(C) = $\ddfrac{1}{32}$, as there are 32 teams. \\
+
+Hence, P($\lnot$ C) = $\ddfrac{31}{32}$, which is $1 - \ddfrac{1}{32}$. \\
+
+We want to find the probability of winning a game after losing 4+ turnovers, given that the opponent isn't the Cleveland Browns. That is, P(W$|\lnot$C).\\
+
+By Bayes' Theorem, 
+
+$$P(W|\lnot C) = \ddfrac{P(\lnot C|W)P(W)}{P(\lnot C)}$$
+
+Now we need to calculate P($\lnot C|W)$, and we know that P(C$|$W) + P($\lnot$C$|$W) = 1. Therefore, we also know that P($\lnot$C$|$W) = 1 - P(C$|$W). \\
+
+By Bayes' Theorem,
+
+\begin{align*}
+P(C|W) &= \ddfrac{P(W|C)P(C)}{P(W)} \\
+       &= \ddfrac{0.24 * \ddfrac{1}{32}}{0.133} \\
+       &= \ddfrac{15}{266}
+\end{align*}
+
+Hence, P($\lnot$ C $|$ W) = 1 - $\ddfrac{15}{266}$ = $\ddfrac{251}{266}$
+
+Hence, 
+\begin{align*}
+P(W|\lnot C) &=  \\
+		       &= \ddfrac{\ddfrac{251}{266} * 0.133}{\ddfrac{31}{32}} \\       
+		       &= \ddfrac{502}{3875}  \\       
+		       &= 0.1295\ (to\ 4\ s.f.) \\
+\end{align*}
+This is the likelihood of a team winning a game in which they lose 4+ turnovers, and their opponent is not the Cleveland Browns.
+\end{document}
