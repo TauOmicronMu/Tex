@@ -98,9 +98,9 @@ let, \\
 
 Then P(W) = 0.133, since the $\%$ is 13.3$\%$. Also, P(W$|$C) = 0.24, since the $\%$ is 24.0$\%$. \\
 
-Assuming that playing any team is equally likely, we know that P(C) = $\ddfrac{1}{32}$, as there are 32 teams. \\
+Assuming that playing any team is equally likely, we know that P(C) = $\ddfrac{1}{31}$, as there are 32 teams, and no team can play against themselves. \\
 
-Hence, P($\lnot$ C) = $\ddfrac{31}{32}$, which is $1 - \ddfrac{1}{32}$. \\
+Hence, P($\lnot$ C) = $\ddfrac{30}{31}$, which is $1 - \ddfrac{1}{31}$. \\
 
 We want to find the probability of winning a game after losing 4+ turnovers, given that the opponent isn't the Cleveland Browns. That is, P(W$|\lnot$C).\\
 
@@ -114,18 +114,18 @@ By Bayes' Theorem,
 
 \begin{align*}
 P(C|W) &= \ddfrac{P(W|C)P(C)}{P(W)} \\
-       &= \ddfrac{0.24 * \ddfrac{1}{32}}{0.133} \\
-       &= \ddfrac{15}{266}
+       &= \ddfrac{0.24 * \ddfrac{1}{31}}{0.133} \\
+       &= \ddfrac{240}{4123}
 \end{align*}
 
-Hence, P($\lnot$ C $|$ W) = 1 - $\ddfrac{15}{266}$ = $\ddfrac{251}{266}$
+Hence, P($\lnot$ C $|$ W) = 1 - $\ddfrac{240}{4123}$ = $\ddfrac{3883}{4123}$
 
 Hence, 
 \begin{align*}
 P(W|\lnot C) &=  \\
-		       &= \ddfrac{\ddfrac{251}{266} * 0.133}{\ddfrac{31}{32}} \\       
-		       &= \ddfrac{502}{3875}  \\       
-		       &= 0.1295\ (to\ 4\ s.f.) \\
+		       &= \ddfrac{\ddfrac{3883}{4123} * 0.133}{\ddfrac{30}{31}} \\       
+		       &= \ddfrac{3883}{30000}  \\       
+		       &= 0.1294\ (to\ 4\ s.f.) \\
 \end{align*}
 This is the likelihood of a team winning a game in which they lose 4+ turnovers, and their opponent is not the Cleveland Browns.
 \end{document}
