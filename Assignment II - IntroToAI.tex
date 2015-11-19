@@ -323,14 +323,15 @@ DISEMBARK(X,Y.Z) \\
 \subsection{Answer - (b)}
 \textbf{Initial State}: place(bhx),
 place(cdg), passenger(john), at(john,bhx), passenger(mary), at(mary, cdg), \\
-atPlane(bhx.$\alpha$), emptyPlane($\alpha$), emptyPlane($\omega$), atPlane(cdg,$\omega$) \\
+atPlane(bhx.$\alpha$), emptyPlane($\alpha$), emptyPlane($\omega$), atPlane(cdg,$\omega$), Plane($\alpha$), Plane($\omega$) \\
 \newline 
 \textbf{Goal State}: at(john, cdg), at(mary, bhx)
 \subsection{Answer - (c)}
 For the sake of conciseness, I have omitted the Plane predicate from the partial order plan, as it doesn't matter which plane they fly on.
 \begin{center}
 \includegraphics{IntroToAIE2PartialPlan.png}
-\end{center}
+\end{center}ls
+
 \subsection{Answer - (d)}
 Let the LHS of the plan be x1, x2 and x3 respectively. Similarly, let the RHS of the plan be y1, y2 and y3 respectively. There are four possible placements of our x1/y1 values: \\
 
