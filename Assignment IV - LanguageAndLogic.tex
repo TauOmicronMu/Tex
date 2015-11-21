@@ -1,0 +1,238 @@
+\documentclass{article}
+\usepackage{latexsym}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{gensymb}
+\usepackage[margin=1.2in]{geometry}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{amsthm}
+\usepackage{blkarray}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{tikz}
+\usepackage{framed}
+\usepackage{fancyhdr}
+\setcounter{page}{0}
+\fancypagestyle{plain}{%
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Tom Goodman}
+\lhead{\leftmark}
+\chead{Language $\&$ Logic - Assignment IV}
+\cfoot{\thepage} 
+\renewcommand{\footrulewidth}{2pt}}
+\pagestyle{plain}
+\newcounter{thrmcount}[section]
+
+\usepackage{graphicx}
+    \graphicspath{ {/home/txg523/Desktop} }
+
+%------------------------------------------------------------------------------%
+
+% $Id: fitch.sty,v 1.6 2003/06/28 16:53:00 johanw Exp $
+
+% Macros for Fitch-style formal proofs
+% Johan W. KlÃ¼wer, June 10, 2001
+
+
+\RequirePackage{mdwtab,latexsym,amsmath,amsfonts,ifthen}
+
+
+% Line height in proofs
+\newlength{\fitchlineht}
+\setlength{\fitchlineht}{1.5\baselineskip}
+% Horizontal indent between proof levels
+\newlength{\fitchindent}
+\setlength{\fitchindent}{1em}
+% Indent to comment
+\newlength{\fitchcomind}
+\setlength{\fitchcomind}{2em}
+% Line number width
+\newlength{\fitchnumwd}
+\setlength{\fitchnumwd}{1em}
+
+% Altered from mdwtab.sty: shorter vline, for start of subproof
+\makeatletter
+\newcommand\fvline[1][\arrayrulewidth]{\vrule\@height.5\fitchlineht\@width#1\relax}
+\makeatother
+% Ordinary vertical line
+\newcommand{\fa}{\vline\hspace*{\fitchindent}}
+% Vertical line, shorter: Use at start of (sub)proof
+\newcommand{\fb}{\fvline\hspace*{\fitchindent}}
+% Hypothesis
+\newcommand{\fh}{\fvline%
+  \makebox[0pt][l]{{%
+      \raisebox{-1.4ex}[0pt][0pt]{\rule{1.5em}{\arrayrulewidth}}}}%
+  \hspace*{\fitchindent}}
+% Hypothesis, with longer vert line: for >1 hypothesis
+\newcommand{\fj}{\vline%
+  \makebox[0pt][l]{{%
+      \raisebox{-1.4ex}[0pt][0pt]{\rule{1.5em}{\arrayrulewidth}}}}%
+  \hspace*{\fitchindent}}
+% Modal subproof: takes argument = operator
+\newcommand{\fitchmodal}[1]{% 
+  \makebox[0pt][r]{${}^{#1}$\,}\fvline\hspace*{\fitchindent}}
+\newcommand{\fn}{\fitchmodal{\Box}}% Box subproof 
+\newcommand{\fp}{\fitchmodal{\Diamond}}% Diamond subproof
+% Modal subproof with hypothesis in first line (as in Fitch)
+\newcommand{\fitchmodalh}[1]{% 
+  \makebox[0pt][r]{${}^{#1}$\,}%
+  \fvline%
+  \makebox[0pt][l]{{%
+      \raisebox{-1.4ex}[0pt][0pt]{\rule{1.5em}{\arrayrulewidth}}}}%
+  \hspace*{\fitchindent}}
+% Rule: formula introduction marker. \fr with line, \fs without line
+\newcommand{\fr}{%
+  \makebox[0pt][r]{${\rhd}$\,\,}\vline\hspace*{\fitchindent}}
+\newcommand{\fs}{%
+  \makebox[0pt][r]{${\rhd}$\,\,}}
+% Box around argument, like new variable in ql
+\newcommand{\fw}[1]{\fbox{\footnotesize $#1$}}
+
+% 
+\newcounter{fitchcounter}
+\setcounter{fitchcounter}{0}
+%To avoid starting from 1, \setboolean{resetfitchcounter}{false}
+\newboolean{resetfitchcounter}
+\setboolean{resetfitchcounter}{true}
+%To avoid increasing numbers, \setboolean{increasefitchcounter}{false}
+\newboolean{increasefitchcounter}
+\setboolean{increasefitchcounter}{true}
+%\formatfitchcounter can be altered if need be, though only once per proof
+\newcommand{\formatfitchcounter}[1]{\arabic{#1}}
+%Typeset the counter
+\newcommand{\fitchcounter}{%
+  \ifthenelse{\boolean{increasefitchcounter}}{\addtocounter{fitchcounter}{1}}{}
+  \formatfitchcounter{fitchcounter}}
+
+%A line with a special number -- a tag, e.g. \ftag{\vdots}{}
+\newcommand{\ftag}[2]{\multicolumn{1}%
+  {!{\makebox[\fitchnumwd][r]{#1}\hspace{\fitchindent}}Ml@{\hspace{\fitchcomind}}}%
+  {#2}}
+
+\newenvironment{fitchnum}%
+{\ifthenelse{\boolean{resetfitchcounter}}{\setcounter{fitchcounter}{0}}{}
+  \begin{tabular}{!{\makebox[\fitchnumwd][r]{\fitchcounter }\hspace{\fitchindent}}Ml@{\hspace{\fitchcomind}}l}}%
+{\end{tabular}}
+
+\newenvironment{fitchunum}%
+{\begin{tabular}{!{\makebox[\fitchnumwd][r]{}\hspace{\fitchindent}}Ml@{\hspace{\fitchcomind}}l}}%
+{\end{tabular}}
+
+\newenvironment{fitch}{\renewcommand{\arraystretch}{1.5}
+  \begin{fitchnum}}{\end{fitchnum}}
+\newenvironment{fitch*}{\renewcommand{\arraystretch}{1.5}
+  \begin{fitchunum}}{\end{fitchunum}}
+
+% The following is useful for giving a numbered formula, then the proof.
+\newenvironment{flem}[2]%
+{\begin{eqnarray}
+    &#1\label{#2}\\
+    &\begin{fitch}}%
+    {\end{fitch}\notag\end{eqnarray}}
+
+%To write comment field for two consecutive lines, with brace
+\newcommand{\ftwocom}[1]{%
+  \parbox[t]{3cm}{
+    \raisebox{-.6\baselineskip}[\baselineskip][0pt]{%
+      $\left.
+        \begin{aligned}
+          \,\\ \,
+        \end{aligned}
+      \right\}$\quad #1}
+  }}
+
+%------------------------------------------------------------------------------%
+
+\newenvironment{thrm}
+	{\begin{leftbar}\noindent\ignorespaces\textbf{Theorem \arabic{section}.\arabic{thrmcount}.}\par\noindent\ignorespaces}		
+	{\end{leftbar}\stepcounter{thrmcount}\noindent\ignorespaces}
+\newenvironment{lem}
+	{\begin{leftbar}\noindent\ignorespaces\textbf{Lemma \arabic{section}.\arabic{thrmcount}.}\par\noindent\ignorespaces}		
+	{\end{leftbar}\stepcounter{thrmcount}\noindent\ignorespaces}
+\newenvironment{nthrm}[1]	
+	{\begin{leftbar}\noindent\ignorespaces\textbf{Theorem \arabic{section}.\arabic{thrmcount}.} \textit{(#1)}\par\noindent\ignorespaces}
+	{\end{leftbar}\stepcounter{thrmcount}\noindent\ignorespaces}
+\newenvironment{nlem}[1]
+	{\begin{leftbar}\noindent\ignorespaces\textbf{Lemma \arabic{section}.\arabic{thrmcount}.} \textit{(#1)}\par\noindent\ignorespaces}
+	{\end{leftbar}\stepcounter{thrmcount}\noindent\ignorespaces}
+\newenvironment{defn}
+	{\begin{leftbar}\noindent\ignorespaces\textbf{Definition.}\par\noindent\ignorespaces}
+	{\end{leftbar}\noindent\ignorespaces}
+\newenvironment{nproof}
+	{\begin{proof}}
+	{\newline\end{proof}\noindent\ignorespaces}
+\newenvironment{prop}
+	{\begin{leftbar}\noindent\ignorespaces\textbf{Proposition \arabic{section}.\arabic{thrmcount}.}\par\noindent\ignorespaces}		
+	{\end{leftbar}\stepcounter{thrmcount}\noindent\ignorespaces}
+\newenvironment{fact}
+	{\begin{leftbar}\noindent\ignorespaces\textbf{Fact \arabic{section}.\arabic{thrmcount}.}\par\noindent\ignorespaces}		
+	{\end{leftbar}\stepcounter{thrmcount}\noindent\ignorespaces}
+\newenvironment{crl}
+	{\begin{leftbar}\noindent\ignorespaces\textbf{Corollary \arabic{section}.\arabic{thrmcount}.}\par\noindent\ignorespaces}		
+	{\end{leftbar}\stepcounter{thrmcount}\noindent\ignorespaces}	
+\newenvironment{ex}[1]
+	{\begin{leftbar}\noindent\ignorespaces\textbf{Example.} (\textit{#1})\par\noindent\ignorespaces}
+	{\end{leftbar}\noindent\ignorespaces}
+\newenvironment{exa}
+	{\begin{leftbar}\noindent\ignorespaces\textbf{Example.}\par\noindent\ignorespaces}
+	{\end{leftbar}\noindent\ignorespaces}
+\newcommand\ddfrac[2]{\frac{\displaystyle #1}{\displaystyle #2}}
+\newcommand{\appropto}{\mathrel{\vcenter{
+  \offinterlineskip\halign{\hfil$##$\cr
+    \propto\cr\noalign{\kern2pt}\sim\cr\noalign{\kern-2pt}}}}}
+\title{Natural Deduction with Predicate Logic}
+\author{Tom Goodman}
+\date{}
+\begin{document}
+\begin{titlepage}
+	\begin{flushleft}
+		\vspace*{1cm}
+		\Huge
+		\textbf{Language $\&$ Logic - Assignment IV} \\
+		\vspace*{1cm}
+		\Large
+		\textbf{Tom Goodman} \\
+	\end{flushleft}
+\end{titlepage}
+\newpage
+\section{Question 1}
+\subsection{Brief}
+\textit{$\forall_{x}[F_{x} \to (G_{x} \to H_{x})], \exists_{x} [F_{x} \land G_{x}] : \exists[H_{x}]$}
+\subsection{Answer}
+\begin{equation*}
+\begin{fitch}
+\forall_{x}[F_{x} \to (G_{x} \to H_{x})] & Premise \ \ \ $\bf{\left\{1\right\}}$ \\
+F_{a} \to (G_{a} \to H_{a}) & $\forall$-Elimination (1) \ \ \ $\bf{\left\{1\right\}}$ \\
+\exists_{x}[F_{x} \land G_{x}] & Premise \ \ \ $\bf{\left\{3\right\}}$ \\
+F_{a} \land G_{a} & $\exists$-Elimination (3) \ \ \ $\bf{\left\{3\right\}}$ \\
+F_{a} & $\land$-Elimination (4) \ \ \ $\bf{\left\{3\right\}}$ \\
+(G_{a} -> H_{a}) & $\to$ Elimination (2,5) \ \ \ $\bf{\left\{1,3\right\}}$ \\
+G_{a} & $\land$-Elimination (4) \ \ \ $\bf{\left\{3\right\}}$ \\
+H_{a} & $\to$ Elimination (6,7) \ \ \ $\bf{\left\{1,3\right\}}$ \\
+\exists_{x}[H_{x}] & $\exists$-Introduction (8) \ \ \ $\bf{\left\{1, 3\right\}}$ \\
+\end{fitch}
+\end{equation*}
+\section{Question 2}
+\subsection{Brief}
+\textit{$:\forall_{x} [((P_{x} \to Q_{x} \to P_{x}) \to P_{x}]$}
+\subsection{Answer}
+\begin{equation*}
+\begin{fitch}
+\fh (P_{x}\to Q_{x}) \to P_{x} & Hypothesis \ \ \ $\bf{\left\{1\right\}}$ \\
+\fa \fh \lnot P_{x} & Hypothesis \ \ \ $\bf{\left\{1, 2\right\}}$ \\
+\fa \fa \fh P_{x} & Hypothesis \ \ \ $\bf{\left\{1, 2, 3\right\}}$ \\
+\fa \fa \fa \fh \lnot Q_{x} & Hypothesis \ \ \ $\bf{\left\{1, 2, 3, 4\right\}}$ \\
+\fa \fa \fa \fa P_{x} & Iteration (3) \ \ \ $\bf{\left\{1, 2, 3, 4\right\}}$ \\
+\fa \fa \fa \fa \lnot P_{x} & Iteration (2) \ \ \ $\bf{\left\{1, 2, 3, 4\right\}}$ \\
+\fa \fa \fa Q_{x} & Reductio Ad Absurdum (5, 6) \ \ \ $\bf{\left\{1, 2, 3\right\}}$ \\
+\fa \fa P_{x} \to Q_{x} & $\to$Introduction (3, 7) \ \ \ $\bf{\left\{1, 2\right\}}$ \\
+\fa \fa P_{x} & $\to$Elimination (1, 8) \ \ \ $\bf{\left\{1\right\}}$ \\
+\fa \fa \lnot P_{x} & Iteration (2) \ \ \ $\bf{\left\{1, 2\right\}}$ \\
+\fa P_{x} & Reductio Ad Absurdum (9, 10) \ \ \ $\bf{\left\{1\right\}}$ \\
+((P_{x}\to Q_{x}) \to P_{x}) \to P_{x} & $\to$ Introduction (1, 11) \ \ \  $\bf{\left\{\right\}}$ \\
+\forall_{x}[((P_{x}\to Q_{x}) \to P_{x}) \to P_{x}] & $\forall$-Introduction (12) \ \ \  $\bf{\left\{\right\}}$ \\
+\end{fitch}
+\end{equation*}
+\end{document}
