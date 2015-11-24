@@ -206,14 +206,16 @@
 \forall_{x}[F_{x} \to (G_{x} \to H_{x})] & Premise \ \ \ $\bf{\left\{1\right\}}$ \\
 F_{a} \to (G_{a} \to H_{a}) & $\forall$-Elimination (1) \ \ \ $\bf{\left\{1\right\}}$ \\
 \exists_{x}[F_{x} \land G_{x}] & Premise \ \ \ $\bf{\left\{3\right\}}$ \\
-F_{a} \land G_{a} & $\exists$-Elimination (3) \ \ \ $\bf{\left\{3\right\}}$ \\
-F_{a} & $\land$-Elimination (4) \ \ \ $\bf{\left\{3\right\}}$ \\
-(G_{a} -> H_{a}) & $\to$ Elimination (2,5) \ \ \ $\bf{\left\{1,3\right\}}$ \\
-G_{a} & $\land$-Elimination (4) \ \ \ $\bf{\left\{3\right\}}$ \\
-H_{a} & $\to$ Elimination (6,7) \ \ \ $\bf{\left\{1,3\right\}}$ \\
-\exists_{x}[H_{x}] & $\exists$-Introduction (8) \ \ \ $\bf{\left\{1, 3\right\}}$ \\
+\fh F_{a} \land G_{a} & Hypothesis \ \ \ $\bf{\left\{4\right\}}$ \\
+\fa F_{a} & $\land$-Elimination (4) \ \ \ $\bf{\left\{4\right\}}$ \\
+\fa (G_{a} -> H_{a}) & $\to$ Elimination (2,5) \ \ \ $\bf{\left\{1,4\right\}}$ \\
+\fa G_{a} & $\land$-Elimination (4) \ \ \ $\bf{\left\{4\right\}}$ \\
+\fa H_{a} & $\to$ Elimination (6,7) \ \ \ $\bf{\left\{1,4\right\}}$ \\
+\fa \exists_{x}[H_{x}] & $\exists$-Introduction (8) \ \ \ $\bf{\left\{1,4\right\}}$ \\
+\exists_{x}[H_{x}] & $\exists$-Elimination (3,4,9) \ \ \ $\bf{\left\{1,3\right\}}$ \\
 \end{fitch}
 \end{equation*}
+\newpage
 \section{Question 2}
 \subsection{Brief}
 \textit{$:\forall_{x} [((P_{x} \to Q_{x} \to P_{x}) \to P_{x}]$}
