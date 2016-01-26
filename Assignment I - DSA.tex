@@ -99,8 +99,7 @@ What is the result of the operation \textit{pop} followed by \textit{pop} follow
 \subsection{Answer}
 push(6, push(3, push(5, push(2, EmptyQueue))))
 \\ \newline
-\includegraphics{DSAE1TwoCell.png}
-\\ \newline
+\begin{center}\includegraphics{DSAE1TwoCell.png}\end{center}
 2
 \\ \newline
 [5, 3, 6]
@@ -184,5 +183,83 @@ let subset(S1, S2) =
         
 let equalset(S1, S2) = 
     return subset(S1, S2) and subset(S2, S1)
+\end{lstlisting}
+
+\section{Question 5}
+\subsection{Brief}
+A quadtree was defined in the lectures in terms of primitive constructors baseQT(value) and makeQT(luqt,ruqt,llqt,rlqt), selectors lu(qt), ll(qt), ru(qt) and rl(qt), and condition isValue(qt). 
+\\ \newline
+Suppose a gray-scale picture is represented by such a quadtree with values in the range 0...255, for example:
+\\ \newline
+\begin{center}\includegraphics[scale=0.60]{DSAE1Quadtree.png}\end{center}
+Write a procedure flip(qt), that only uses the above quadtree primitive operators, to flip the picture about the vertical line through its centre.
+\\ \newline
+Write another procedure avevalue(qt), that uses the above primitive quadtree operators, to return the average gray-scale value across the whole picture.
+\subsection{Answer}
+\begin{lstlisting}
+let flip(qt) =
+    if isValue(qt) then
+        return qt
+    else
+        return MakeQt(ru(qt), lu(qt), ll(qt), rl(qt))
+        
+let avevalue(qt) =
+    let acc = 0 in
+    let n = 0 in
+    let avevalue'(qt) = 
+        if isValue(qt) then
+            acc += qt
+            n++
+        else
+            return avevalue(lu(qt)) +
+                   avevalue(ru(qt)) +
+                   avevalue(ll(qt)) +
+                   avevalue(rl(qt))
+    in avevalue'(qt) 
+    return acc/n
+     
+\end{lstlisting}
+\section{Question 6}
+\subsection{Brief}
+Suppose you have access to the primitive binary tree procedures \textit{root(bt)}, \textit{left(bt)}, \textit{right(bt)} and \textit{isempty(bt)}. 
+\\ \newline
+Write a procedure isLeaf(bt) using them that returns true
+if the binary tree bt is a leaf node, and false if it is not.
+\\ \newline
+Then write a recursive procedure numLeaves(bt) that returns the number of leaves in the given binary tree bt. It is only allowed to call the above primitive binary tree procedures and your \textit{isLeaf(bt)} procedure.
+\newpage
+\subsection{Answer}
+\begin{lstlisting}
+let isLeaf(bt) =
+    if isempty(bt) then
+        error "The binary tree is bare."
+    return isempty(left(bt)) and isempty(right(bt))
+\end{lstlisting}
+\begin{lstlisting}
+let numleaves(bt) =
+    if isempty(bt) then
+        error "The binary tree is bare."
+    if isLeaf(bt) then
+        return root(bt)
+    else
+        return numleaves(left(bt)) + numleaves(right(bt))
+\end{lstlisting}
+\section{Question 7}
+\subsection{Brief}
+It is often important to know whether two given binary trees are the identical. Write a
+recursive procedure equalBinTree(bt1,bt2) which returns true if the given binary trees bt1 and bt2 are the same, and false otherwise. You can assume that you have
+access to the standard primitive binary tree procedures \textit{root(bt)}, \textit{left(bt)}, \textit{right(bt)} and \textit{isempty(bt)}. [Hint: Remember that you can only directly test the equality of numbers, e.g. node values.]
+\\ \newline
+What is the time complexity of your algorithm?
+\subsection{Answer}
+\begin{lstlisting}
+let equalbintree(bt1, bt2) =
+    if isempty(bt1) or isempty(bt2) then
+        error "One or both of the binary trees are bare."
+    if isLeaf(root(bt1)) and isLeaf(root(bt2)) then
+        return root(bt1) = root(bt2)
+    else
+        return equalbintree(left(bt1), left(bt2)) and 
+               equalbintree(right(bt1), right(bt2))
 \end{lstlisting}
 \end{document}
